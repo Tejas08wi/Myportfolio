@@ -264,7 +264,6 @@
     <script src="${pageContext.request.contextPath}/vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.ajaxchimp.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/mail-script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="${pageContext.request.contextPath}/js/gmaps.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/theme.js"></script>
 </body>
