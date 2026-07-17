@@ -283,13 +283,18 @@
 							<h5>Full Stack Developer & Software Engineer</h5>
 							<div class="d-flex align-items-center">
 								<a class="primary_btn" href="${pageContext.request.contextPath}/client/contact"><span>Hire Me</span></a>
-								<a class="primary_btn tr-bg" href="${pageContext.request.contextPath}/Resume_22052865.pdf" target="_blank"><span>Get CV</span></a>
+								<a class="primary_btn tr-bg" href="${resumeUrl}" target="_blank"><span>Get CV</span></a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-5">
 						<div class="home_right_img">
-							<img src="${pageContext.request.contextPath}/img/banner/MyImage.png" alt="Tejasvi Kumar">
+							<c:choose>
+    <c:when test="${not empty bannerImage}">
+        <img src="${bannerImage}" alt="Tejaswi Kumar">
+    </c:when>
+    
+</c:choose>
 						</div>
 					</div>
 				</div>
@@ -309,14 +314,14 @@
 
 				<div class="offset-lg-1 col-lg-5">
 					<div class="main_title text-left">
-						<h2>Let’s <br> Introduce <br> Myself</h2>
+						<h2>Let's <br> Introduce <br> Myself</h2>
 						<p>
 							I am a Computer Science engineering student at Kalinga Institute of Industrial Technology with a solid foundation in software development, data structures, algorithms, and full-stack implementations.
 						</p>
 						<p>
 							From processing real-time system data pipelines during my tenure at Tata Steel to integrating robust AI features like the Gemini API for complex platform engines, I build scalable web applications focused on performance and security.
 						</p>
-						<a class="primary_btn" href="${pageContext.request.contextPath}/Resume_22052865.pdf" target="_blank"><span>Download CV</span></a>
+						<a class="primary_btn" href="${resumeUrl}" target="_blank"><span>Download CV</span></a>
 					</div>
 				</div>
 			</div>

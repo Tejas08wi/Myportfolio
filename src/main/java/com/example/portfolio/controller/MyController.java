@@ -26,10 +26,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.portfolio.dto.ContactDto;
 import com.example.portfolio.dto.SignupDto;
 import com.example.portfolio.entities.AppUser;
+import com.example.portfolio.repositories.PortfolioFileRepository;
 import com.example.portfolio.repositories.UserRepository;
 import com.example.portfolio.services.ContactService;
 import com.example.portfolio.services.ServicesService;
 import com.example.portfolio.services.UserService;
+
+import com.example.portfolio.entities.PortfolioFile;
+import com.example.portfolio.repositories.PortfolioFileRepository;
 
 @Controller
 @RequestMapping("/client")
@@ -46,12 +50,22 @@ public class MyController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PortfolioFileRepository portfolioFileRepository;
+
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model) {
+
+		portfolioFileRepository.findByType("banner")
+				.ifPresent(file -> model.addAttribute("bannerImage", file.getUrl()));
+
+		portfolioFileRepository.findByType("resume")
+				.ifPresent(file -> model.addAttribute("resumeUrl", file.getUrl()));
+
 		return "index";
 	}
 
@@ -75,12 +89,12 @@ public class MyController {
 	public String saveContact(@Valid @ModelAttribute ContactDto contactDto, BindingResult bindingResult, Model model,
 			RedirectAttributes redirectAttributes) {
 
-//		if(bindingResult.hasErrors()) {
-//			List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-//			for(FieldError error:fieldErrors) {
-//				String defaultMessage = error.getDefaultMessage();
-//			}
-//		}
+		// if(bindingResult.hasErrors()) {
+		// List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+		// for(FieldError error:fieldErrors) {
+		// String defaultMessage = error.getDefaultMessage();
+		// }
+		// }
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("result", "Invalid input");
 			model.addAttribute("errors", bindingResult.getFieldErrors());
