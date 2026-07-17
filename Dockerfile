@@ -1,20 +1,17 @@
-# Build Stage
 FROM maven:3.9.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+COPY . .
 
 RUN mvn clean package -DskipTests
 
-# Runtime Stage
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY --from=build /app/target/myproject-0.0.1-SNAPSHOT.war app.war
+COPY --from=build /app/target/*.war app.war
 
-EXPOSE 8080
+EXPOSE 10000
 
-ENTRYPOINT ["java", "-jar", "app.war"]
+ENTRYPOINT ["java","-Dserver.port=${PORT}","-jar","app.war"]
